@@ -1,0 +1,10 @@
+# Compiled program files
+*.exe
+*.o
+*.obj
+
+# Database files
+*.db
+
+# VS Code editor settings
+.vscode/   this?
