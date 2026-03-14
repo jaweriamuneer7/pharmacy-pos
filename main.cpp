@@ -2,11 +2,7 @@
 #include"sqlite3.h"
 
 
-void checkinOrCreating(sqlite3 *db);
-
-
-
-
+void createMedicineTable(sqlite3 *db);
 
 int main() {
     sqlite3 *db;
@@ -21,13 +17,13 @@ int main() {
     else {
         std::cout << "Database opened successfully!!!" << std::endl;
     }
-
+    createMedicineTable(db);
     sqlite3_close(db);
     return 0;
 
 }
 
-void checkingOrCreatingTable(sqlite3 *db) {
+void createMedicineTable(sqlite3 *db) {
     
 
     const char *sql = "CREATE TABLE IF NOT EXISTS MEDICINE("
@@ -35,5 +31,19 @@ void checkingOrCreatingTable(sqlite3 *db) {
     "NAME TEXT NOT NULL,"
     "PRICE REAL NOT NULL,"
     "STOCK INTEGER NOT NULL);";
+    char *errorMessage = nullptr;
+    int rc = sqlite3_exec(db, sql, nullptr, nullptr, &errorMessage);
 
+    if(rc!=SQLITE_OK) {
+        std::cout<< "Facing an error creating"<< errorMessage << std::endl;
+        sqlite3_free(errorMessage);
+    }
+    else {
+        std::cout<<"Medicine Table Created Successfully!"<< std::endl;
+    }
+
+
+    
+
+    
 }
