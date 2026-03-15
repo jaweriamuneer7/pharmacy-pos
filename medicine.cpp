@@ -57,3 +57,23 @@ void addMedicine(sqlite3 *db) {
     }
 
 }
+int printMedicine(void *data, int cols, char **colValues, char **colNames) {
+    std::cout << "ID: " << colValues[0] << std::endl;
+    std::cout << "NAME: " << colValues[1] << std::endl;
+    std::cout << "PRICE: " << colValues[2] << std::endl;
+    std::cout << "STOCK: " << colValues[3] << std::endl;
+    std::cout << "-------------------------" << std::endl;
+    return 0;
+    }
+ 
+void viewMedicine(sqlite3 *db) {
+    const char *sql = "SELECT * FROM mEDICINE";
+    char *errorMessage = nullptr;
+
+    int rc = sqlite3_exec(db, sql, printMedicine, nullptr, &errorMessage);
+
+    if (rc!=SQLITE_OK) {
+        std::cout << "Error: " << errorMessage << std::endl;
+        sqlite3_free(errorMessage);
+    }
+}

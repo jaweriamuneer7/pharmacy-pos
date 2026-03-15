@@ -36,7 +36,7 @@ int main() {
                 addMedicine(db);
                 break;
             case 2:
-                std::cout << "Feature will be added later" << std::endl;
+                viewMedicine(db);
                 break;
             case 3:
                 std::cout << "Feature will be added later" << std::endl;
