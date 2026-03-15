@@ -29,7 +29,8 @@ void addMedicine(sqlite3 *db) {
     int medicineStock;
 
     std::cout<< "Enter Name of Medicine: " << std::endl;
-    std::cin >> medicineName;
+    std::cin.ignore();                                  
+    std::getline(std::cin, medicineName);
 
     
     std::cout<< "Enter price: " << std::endl;
@@ -70,7 +71,7 @@ int printMedicine(void *data, int cols, char **colValues, char **colNames) {
     }
  
 void viewMedicine(sqlite3 *db) {
-    const char *sql = "SELECT * FROM mEDICINE";
+    const char *sql = "SELECT * FROM MEDICINE";
     char *errorMessage = nullptr;
 
     int rc = sqlite3_exec(db, sql, printMedicine, nullptr, &errorMessage);
@@ -79,4 +80,20 @@ void viewMedicine(sqlite3 *db) {
         std::cout << "Error: " << errorMessage << std::endl;
         sqlite3_free(errorMessage);
     }
+}
+
+void searchMedicine(sqlite3 *db) {
+    std::string name;
+    std::cout << "Enter Medicine name to search: " << std::endl;
+    std::cin >> name; 
+
+    std::string sql = "SELECT * FROM MEDICINE WHERE NAME LIKE '%" + name + "%';";
+
+    char *errorMessage = nullptr;
+    int rc = sqlite3_exec(db, sql.c_str(), printMedicine, nullptr, &errorMessage);
+    if(rc!=SQLITE_OK) {
+        std::cout << "Error: " << errorMessage << std::endl;
+        sqlite3_free(errorMessage);
+    }
+   
 }

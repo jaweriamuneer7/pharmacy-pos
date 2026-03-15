@@ -24,8 +24,8 @@ int main() {
     while(true) {
         std::cout << "Welcome to Shery Pharmacy" << std::endl;
         std::cout << "1. for adding Medicines" << std::endl;
-        std::cout << "2. to search Medicine" << std::endl;
-        std::cout << "3. to update Medicine" << std::endl;
+        std::cout << "2. to view Medicine" << std::endl;
+        std::cout << "3. to search Medicine" << std::endl;
         std::cout << "4. to delete Medicine" << std::endl;
         std::cout << "5. to exit()" << std::endl;
 
@@ -39,7 +39,7 @@ int main() {
                 viewMedicine(db);
                 break;
             case 3:
-                std::cout << "Feature will be added later" << std::endl;
+                searchMedicine(db);
                 break;
             case 4:
                 std::cout << "Feature will be added later" << std::endl;
