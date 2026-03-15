@@ -58,10 +58,13 @@ void addMedicine(sqlite3 *db) {
 
 }
 int printMedicine(void *data, int cols, char **colValues, char **colNames) {
-    std::cout << "ID: " << colValues[0] << std::endl;
+    /*std::cout << "ID: " << colValues[0] << std::endl;
     std::cout << "NAME: " << colValues[1] << std::endl;
     std::cout << "PRICE: " << colValues[2] << std::endl;
-    std::cout << "STOCK: " << colValues[3] << std::endl;
+    std::cout << "STOCK: " << colValues[3] << std::endl;*/
+     for(int i = 0; i < cols; i++) {
+        std::cout << colNames[i] << ": " << (colValues[i] ? colValues[i] : "NULL") << std::endl;
+    }
     std::cout << "-------------------------" << std::endl;
     return 0;
     }
