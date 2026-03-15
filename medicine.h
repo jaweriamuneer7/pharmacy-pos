@@ -4,5 +4,6 @@
 #include "sqlite3.h"
 
 void createMedicineTable(sqlite3 *db);
+void addMedicine(sqlite3 *db);
 
 #endif

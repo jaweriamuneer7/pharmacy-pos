@@ -1,3 +1,4 @@
+#include<string>
 #include<iostream>
 #include "sqlite3.h"
 #include"medicine.h"
@@ -19,5 +20,40 @@ void createMedicineTable(sqlite3 *db) {
     }
     else {
         std::cout<<"Medicine Table Created Successfully!"<< std::endl;
+    }   
+}
+
+void addMedicine(sqlite3 *db) {
+    std::string medicineName;
+    double medicinePrice;
+    int medicineStock;
+
+    std::cout<< "Enter Name of Medicine: " << std::endl;
+    std::cin >> medicineName;
+
+    
+    std::cout<< "Enter price: " << std::endl;
+    std::cin >> medicinePrice;
+
+    
+    std::cout<< "Enter Medicine stock: " << std::endl;
+    std::cin >> medicineStock;
+
+    // build the SQl insert statement 
+    std::string sql = "INSERT INTO MEDICINE (NAME, PRICE, STOCK) VALUES ('"
+                    + medicineName + "', "
+                    + std::to_string(medicinePrice) + ", "
+                    + std::to_string(medicineStock) + ");";
+
+    char *errorMessage = nullptr;
+    int rc = sqlite3_exec(db, sql.c_str(), nullptr, nullptr, &errorMessage);
+
+    if(rc!=SQLITE_OK){
+        std::cout << "Facing an error adding medicine: " << errorMessage << std::endl;
+        sqlite3_free(errorMessage);
     }
+    else {
+        std::cout << "Medicine added succesfully!" << std::endl;
+    }
+
 }
