@@ -26,7 +26,7 @@ int main() {
         std::cout << "1. for adding Medicines" << std::endl;
         std::cout << "2. to view Medicine" << std::endl;
         std::cout << "3. to search Medicine" << std::endl;
-        std::cout << "4. to delete Medicine" << std::endl;
+        std::cout << "4. to update Medicine data" << std::endl;
         std::cout << "5. to exit()" << std::endl;
 
         std::cin >> choice;
@@ -42,7 +42,7 @@ int main() {
                 searchMedicine(db);
                 break;
             case 4:
-                std::cout << "Feature will be added later" << std::endl;
+                updateMedicine(db);
                 break;
             case 5:
                 std::cout << "Good Bye!!!" << std::endl;
