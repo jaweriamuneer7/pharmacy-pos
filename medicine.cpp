@@ -182,3 +182,23 @@ void updateMedicine(sqlite3 *db) {
     }
 
 }
+
+void deleteMedicine(sqlite3 *db){
+    int medicineId;
+
+    std::cout << "Enter ID to delete: ";
+    std::cin >> medicineId;
+
+    std::string sql = "DELETE FROM MEDICINE WHERE ID = " + std::to_string(medicineId) + ";";
+
+    char *errorMessage = nullptr;
+    int rc = sqlite3_exec(db, sql.c_str(), nullptr, nullptr, &errorMessage);
+    if(rc!=SQLITE_OK){
+        std::cout << "Error: " << errorMessage << std::endl;
+        sqlite3_free(errorMessage);
+    }
+    else {
+        std::cout << "Record deleted successfully! " << std::endl;
+    }
+    
+}

@@ -27,7 +27,8 @@ int main() {
         std::cout << "2. to view Medicine" << std::endl;
         std::cout << "3. to search Medicine" << std::endl;
         std::cout << "4. to update Medicine data" << std::endl;
-        std::cout << "5. to exit()" << std::endl;
+        std::cout << "5. to delete the record" << std::endl;
+        std::cout << "6. To exit! " << std::endl;
 
         std::cin >> choice;
 
@@ -45,6 +46,9 @@ int main() {
                 updateMedicine(db);
                 break;
             case 5:
+                deleteMedicine(db);
+                break;
+            case 6:
                 std::cout << "Good Bye!!!" << std::endl;
                 sqlite3_close(db);
                 return 0;
